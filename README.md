@@ -1,6 +1,6 @@
 # 🛵 Delivery - Kotlin
 
-Este projeto é uma simulação de um sistema de delivery desenvolvida em **Kotlin**, com foco na modelagem orientada a objetos.
+Simulação de um sistema de delivery desenvolvida em **Kotlin**, com foco na modelagem orientada a objetos.
 
 O sistema representa o fluxo básico de um pedido: um **Cliente** faz um **Pedido** composto por **Itens**, cada um vinculado a um **Produto**. O endereço de entrega é armazenado em uma classe **Endereco** associada ao cliente.
 
