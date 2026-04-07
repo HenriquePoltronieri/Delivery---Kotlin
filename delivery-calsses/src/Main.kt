@@ -1,20 +1,89 @@
-# 🛵 Delivery - Kotlin
+// Classe Produto
+class Produto(
+    var nome: String,
+    var preco: Double
+)
 
-Este projeto é uma simulação de um sistema de delivery desenvolvida em **Kotlin**, com foco na modelagem orientada a objetos.
+// Classe Item_pedido
+class Item_pedido(
+    val produto: Produto,
+    var qtdInicial: Int
+) {
+    fun adicionar_unidades() {
+        qtdInicial++
+    }
 
-O sistema representa o fluxo básico de um pedido: um **Cliente** faz um **Pedido** composto por **Itens**, cada um vinculado a um **Produto**. O endereço de entrega é armazenado em uma classe **Endereco** associada ao cliente.
+    fun subTotal(): Double {
+        return produto.preco * qtdInicial
+    }
+}
 
-O projeto foi desenvolvido como exercício prático de criação e relacionamento de classes em Kotlin, explorando conceitos como construtores, métodos, listas mutáveis e encapsulamento.
+// Classe Pedido
+class Pedido(
+    var itens: MutableList<Item_pedido> = mutableListOf()
+) {
+    fun adicionarItem(item: Item_pedido) {
+        itens.add(item)
+    }
 
----
+    fun totalBruto(): Double {
+        var total = 0.0
+        for (item in itens) {
+            total += item.subTotal()
+        }
+        return total
+    }
+}
 
-## 🛠️ Tecnologia
+// Classe Cliente
+class Cliente(
+    val nome: String,
+    var endereco: Endereco
+)
 
-- [Kotlin](https://kotlinlang.org/)
+// Classe Endereco
+class Endereco(
+    var rua: String,
+    var numeroCasa: Int,
+    var bairro: String,
+    var cidade: String,
+    var cep: Int
+)
 
----
 
-## 👨‍💻 Autor
+fun main() {
+    // Produto
+    val _produto = Produto("Pizza", 80.00)
+    _produto.preco = 100.00
+    _produto.nome = "Calabresa"
+    println("Produto: ${_produto.nome} | Preço: R$${_produto.preco}")
 
-**Henrique Poltronieri**  
-[![GitHub](https://img.shields.io/badge/GitHub-HenriquePoltronieri-181717?style=flat&logo=github)](https://github.com/HenriquePoltronieri)
+    // Item do pedido
+    val _itemPedido = Item_pedido(_produto, 1)
+    _itemPedido.adicionar_unidades()
+    println("Qtd: ${_itemPedido.qtdInicial} | Subtotal: R$${_itemPedido.subTotal()}")
+
+    // Pedido
+    val _pedido = Pedido()
+    _pedido.adicionarItem(_itemPedido)
+    println("Total bruto: R$${_pedido.totalBruto()}")
+
+    // Endereço
+    val _endereco = Endereco(
+        rua = "Rua das Flores",
+        numeroCasa = 42,
+        bairro = "Centro",
+        cidade = "Belo Horizonte",
+        cep = 30110000
+    )
+
+    // Cliente
+    val _cliente = Cliente(
+        nome = "João Silva",
+        endereco = _endereco
+    )
+
+    println("Cliente: ${_cliente.nome}")
+    println("Endereço: ${_cliente.endereco.rua}, ${_cliente.endereco.numeroCasa} - ${_cliente.endereco.bairro}, ${_cliente.endereco.cidade}")
+}
+
