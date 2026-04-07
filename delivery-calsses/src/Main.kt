@@ -1,76 +1,20 @@
-// Classe Produto
-class Produto(
-    var nome:String,
-    var preco:Double
-)
+# 🛵 Delivery - Kotlin
 
-// Classe Item_pedido
-class Item_pedido(
-    val produto:Produto,
-    var qtdInicial:Int
-){
-    fun adicionar_unidades(){
-        qtdInicial++
-    }
-    fun subTotal(): Double{
-        return produto.preco * qtdInicial
-    }
-}
+Este projeto é uma simulação de um sistema de delivery desenvolvida em **Kotlin**, com foco na modelagem orientada a objetos.
 
-// Classe Pedido
-class Pedido(
-    var itens: MutableList<Item_pedido> = mutableListOf()
-){
-    fun adicionarItem(){
-        itens.add(produto)
-    }
+O sistema representa o fluxo básico de um pedido: um **Cliente** faz um **Pedido** composto por **Itens**, cada um vinculado a um **Produto**. O endereço de entrega é armazenado em uma classe **Endereco** associada ao cliente.
 
-    fun totalBruto(){
-        var total = 0.0
-        for (item in itens) {
-            total += item.subTotal()
-        }
-    }
-}
+O projeto foi desenvolvido como exercício prático de criação e relacionamento de classes em Kotlin, explorando conceitos como construtores, métodos, listas mutáveis e encapsulamento.
 
-// Classe Cliente
-class Cliente(
-    val nome:String,
-    var endereco:Endereco
-)
+---
 
-// Classe Endereco
-class Endereco(
-    var rua:String,
-    var numeroCasa:Int,
-    var bairro:String,
-    var cidade:String,
-    var cep:Int
-)
+## 🛠️ Tecnologia
 
+- [Kotlin](https://kotlinlang.org/)
 
+---
 
+## 👨‍💻 Autor
 
-
-fun main() {
-    val _produto = Produto("Pizza", 80.00)
-    _produto.preco = 100.00
-    _produto.nome = "Calabresa"
-    println(_produto.preco)
-
-    val _itemPedido = Item_pedido(_produto,1)
-    _itemPedido.adicionar_unidades()
-
-    val _pedido = Pedido("" )
-
-    val _cliente = Cliente("", "")
-
-    val _endereco = Endereco("", 1, "", "", 10101010)
-
-
-
-
-
-
-
-}
+**Henrique Poltronieri**  
+[![GitHub](https://img.shields.io/badge/GitHub-HenriquePoltronieri-181717?style=flat&logo=github)](https://github.com/HenriquePoltronieri)
